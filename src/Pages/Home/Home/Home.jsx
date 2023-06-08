@@ -1,9 +1,14 @@
 import React from 'react';
+import TopSlider from '../Top Slider Section/TopSlider';
+import { Helmet } from 'react-helmet';
 
 const Home = () => {
     return (
         <div>
-            <h2>hello</h2>
+            <Helmet>
+                <title>Poly-Fusion|Home</title>
+            </Helmet>
+            <TopSlider></TopSlider>
         </div>
     );
 };
