@@ -11,7 +11,7 @@ const Footer = () => {
   <div>
   <img className="w-16"src={logo} alt="" /> 
     <p className='text-extra-bold text-xl'>Poly-Fusion 
-    <br /><a href="#"><FontAwesomeIcon icon={faPhone} className="text-xl" /></a>  +123675324 <br /><a href="#"><FontAwesomeIcon icon={faEnvelope} className="text-xl" /></a>  language@polyfusion.com <br /><a href="#"><FontAwesomeIcon icon={faMapMarker} className="text-xl" /></a>  Poly-Fusion Language Learning School
+    <br /><a href="#"><FontAwesomeIcon icon={faPhone} className="text-xl" /></a>  +123675324 <br /><a href="#"><FontAwesomeIcon icon={faEnvelope} className="text-xl" /></a>  language@polyfusion.com <br /><a href="#"><FontAwesomeIcon icon={faMapMarker} className="text-xl" /></a>  Poly-Fusion Language Learning School,
          123 Main Street
          Anytown, USA,
          Postal Code-12345 <br />Copyright © 2023 Poly-Fusion. All rights reserved.

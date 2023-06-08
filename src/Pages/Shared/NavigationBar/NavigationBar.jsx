@@ -12,7 +12,7 @@ const NavigationBar = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
             </svg>
           </label>
-          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 text-white  shadow bg-white rounded-box w-52">
+          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-white rounded-box w-52">
             <li><Link to="/">Home</Link></li>
             <li><Link to="/Instructors">Instructors</Link></li>
             <li><Link to="/Classes">Classes</Link></li>
@@ -30,7 +30,7 @@ const NavigationBar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">LogIn</a>
+        <Link to="/LogIn" className="btn">LogIn</Link> 
       </div>
     </div>
   );
