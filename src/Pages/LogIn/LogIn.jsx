@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { RiEyeLine, RiEyeOffLine } from 'react-icons/ri';
 import { useForm } from 'react-hook-form';
 import { Helmet } from 'react-helmet';
+import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 
 
 const LogIn = () => {
@@ -13,14 +14,21 @@ const LogIn = () => {
     // const [error, setError] = useState('');
     const navigate=useNavigate();
     const{ logIn}=useContext(AuthContext);
+    const [userPhotoURL, setUserPhotoURL] = useState('');
     const onSubmit = data =>{
         console.log(data);
         logIn(data.email,data.password)
     .then(result=>{
-      const user=result.user;
-      console.log(user);
-    });
+        if (result && result.user) {
+            const user = result.user;
+            console.log(user);
+    }
     navigate('/');
+})
+    .catch((error) => {
+        console.log('An error occurred during login:', error);
+        // Handle the error
+      });
 }
 
 
@@ -31,6 +39,22 @@ const LogIn = () => {
       };
      
     
+
+      const handleGoogleSignIn = () => {
+        const auth = getAuth();
+        const provider = new GoogleAuthProvider();
+        signInWithPopup(auth, provider)
+          .then((result) => {
+            const user = result.user;
+            console.log(user);
+            setUserPhotoURL(user.photoURL || '');
+            navigate('/');
+          })
+          .catch((error) => {
+            console.log('An error occurred during Google Sign-In:', error);
+            // Handle the error
+          });
+      };
 
     // const handleLogin=event=>{
     //     event.preventDefault();
@@ -99,7 +123,7 @@ const LogIn = () => {
         <div className="form-control mt-6">
           
           <input className="btn btn-neutral mb-5" type ="submit" value="LogIn"/>
-          <button className="btn btn-outline" >
+          <button className="btn btn-outline" onClick={handleGoogleSignIn} >
                 Google Sign-in
               </button>
         </div>

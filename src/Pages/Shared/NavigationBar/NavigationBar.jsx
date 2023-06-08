@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext }  from 'react';
 import { Link } from 'react-router-dom';
 import logo from './Poly-Fusion.png';
+import { AuthContext } from '../../../Providers/AuthProvider';
+
 
 const NavigationBar = () => {
+  const { user,logOut } = useContext(AuthContext);
   return (
     <div className="navbar bg-gray-900">
       <div className="navbar-start">
@@ -30,10 +33,37 @@ const NavigationBar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <Link to="/LogIn" className="btn">LogIn</Link> 
+      {/* <Link to="/LogIn" className="btn">LogIn</Link>
+      </div>
+    </div>
+  );
+}; */}
+{user ? (
+          // User is signed in, display profile picture and dashboard
+          <>
+            <img
+              className="w-10 h-10 rounded-full"
+              src={user.photoURL}
+              alt="Profile"
+            />
+            <Link to="/dashboard" className='text-white px-3'>
+              Dashboard
+            </Link>
+            <button onClick={logOut} className="btn">Logout</button>
+          </>
+        ) : (
+          // User is not signed in, display Login button
+          <Link to="/LogIn" className="btn">
+            LogIn
+          </Link>
+        )}
       </div>
     </div>
   );
 };
 
+
+
+
 export default NavigationBar;
+
