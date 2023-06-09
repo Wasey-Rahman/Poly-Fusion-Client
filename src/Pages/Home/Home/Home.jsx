@@ -2,6 +2,7 @@ import React from 'react';
 import TopSlider from '../Top Slider Section/TopSlider';
 import { Helmet } from 'react-helmet';
 import PopularClasses from '../Popular Classes/PopularClasses';
+import PopularInstructors from '../Popular Instructors/PopularInstructors';
 
 
 
@@ -13,6 +14,7 @@ const Home = () => {
             </Helmet>
          <TopSlider></TopSlider>
          <PopularClasses></PopularClasses>
+         <PopularInstructors></PopularInstructors>
            
         </div>
     );
