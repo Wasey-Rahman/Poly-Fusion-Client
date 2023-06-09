@@ -8,6 +8,7 @@ import NotFound from "../404_page/NotFound";
 import LogIn from "../Pages/LogIn/LogIn";
 import Register from "../Pages/Register/Register";
 import Instructors from "../Pages/Instrutors/Instructors";
+import Classes from "../Pages/Classes/Classes";
 
   export const router = createBrowserRouter([
     {
@@ -29,6 +30,10 @@ import Instructors from "../Pages/Instrutors/Instructors";
         {
           path:"/Register",
           element:<Register></Register>
+        },
+        {
+          path:"/Classes",
+          element:<Classes></Classes>
         }
        
       ]
