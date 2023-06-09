@@ -1,6 +1,9 @@
 import React from 'react';
 import TopSlider from '../Top Slider Section/TopSlider';
 import { Helmet } from 'react-helmet';
+import PopularClasses from '../Popular Classes/PopularClasses';
+
+
 
 const Home = () => {
     return (
@@ -8,7 +11,9 @@ const Home = () => {
             <Helmet>
                 <title>Poly-Fusion|Home</title>
             </Helmet>
-            <TopSlider></TopSlider>
+         <TopSlider></TopSlider>
+         <PopularClasses></PopularClasses>
+           
         </div>
     );
 };

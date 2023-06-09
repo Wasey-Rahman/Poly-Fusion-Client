@@ -15,10 +15,10 @@ import Register from "../Pages/Register/Register";
       element: <Main></Main>,
       children:[
         {
-            path:'/',
-            element:<Home></Home>
-        },
-        {
+          path:'/',
+          element:<Home></Home>
+      },
+       {
             path:"/Instructors",
             element:<Instructors></Instructors>
         },
@@ -33,6 +33,7 @@ import Register from "../Pages/Register/Register";
        
       ]
     },
+    
     {
         path:'*',
         element:<NotFound></NotFound>
