@@ -4,10 +4,10 @@ import {
   } from "react-router-dom";
 import Main from "../Layout/main";
 import Home from "../Pages/Home/Home/Home";
-import Instructors from "../Pages/Instructors/Instructors";
 import NotFound from "../404_page/NotFound";
 import LogIn from "../Pages/LogIn/LogIn";
 import Register from "../Pages/Register/Register";
+import Instructors from "../Pages/Instrutors/Instructors";
 
   export const router = createBrowserRouter([
     {
