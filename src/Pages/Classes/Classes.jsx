@@ -1,35 +1,69 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Providers/AuthProvider';
+import Swal from 'sweetalert2';
+
 
 const Classes = () => {
     const [classData, setClassData] = useState([]);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [hasShownLoginMessage, setHasShownLoginMessage] = useState(false);
+    const {user} =useContext(AuthContext);
+    const navigate=useNavigate();
+    const location=useLocation();
     
-
-
-    useEffect(()=>{
+  useEffect(()=>{
         fetch('http://localhost:5000/Class')
           .then(res=>res.json())
           .then(data=>setClassData(data));
     },[])
 
-    const handleSelectClass = () => {
-      if (!isLoggedIn) {
-        if (!hasShownLoginMessage) {
-          alert('Please log in before selecting a course.');
-          setHasShownLoginMessage(true);
+
+
+const handleAdd=(classItem)=>{
+
+  if (user && user.email){
+    const classItemData={...classItem, email: user.email}
+    fetch('http://localhost:5000/Data',{
+      method:'POST',
+      headers:{
+        'content-type':'application/json'
+      },
+      body:JSON.stringify(classItemData)
+    })
+        .then(res=>res.json())
+        .then(data=>{
+          if(data.insertedId){
+           Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Your Work Has Been Saved',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          }
+        });
+      }
+        else{
+          Swal.fire({
+            title: 'Please login before selecting the course',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'LogIn now!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              navigate('/LogIn',{state:{from:location}})
+            }
+          })
         }
-        return;
-      };
-      // Perform the necessary actions when the class is selected
-      // ...
   
-      // Reset the login message state
-      setHasShownLoginMessage(false);
+}
+
     
-  };
+    
+  
+    
     
       
 
@@ -54,7 +88,7 @@ const Classes = () => {
          {/* <Link to="/Classes">
          <button className='btn btn-neutral'>Select</button>
          </Link> */}
-        <button className='btn btn-neutral' onClick={handleSelectClass}>
+        <button className='btn btn-neutral'onClick={() => handleAdd(classItem)} >
             Select
           </button>
         </div>
