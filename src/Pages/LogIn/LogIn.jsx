@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { RiEyeLine, RiEyeOffLine } from 'react-icons/ri';
 import { useForm } from 'react-hook-form';
 import { Helmet } from 'react-helmet';
@@ -13,6 +13,8 @@ const LogIn = () => {
     const [showPassword, setShowPassword] = useState(false);
     // const [error, setError] = useState('');
     const navigate=useNavigate();
+    const location=useLocation();
+    const from=location.state?.from?.pathname || "/";
     const{ logIn}=useContext(AuthContext);
     const [userPhotoURL, setUserPhotoURL] = useState('');
     const onSubmit = data =>{
@@ -23,7 +25,7 @@ const LogIn = () => {
             const user = result.user;
             console.log(user);
     }
-    navigate('/');
+    navigate(from,{replace:true});
 })
     .catch((error) => {
         console.log('An error occurred during login:', error);
@@ -48,7 +50,7 @@ const LogIn = () => {
             const user = result.user;
             console.log(user);
             setUserPhotoURL(user.photoURL || '');
-            navigate('/');
+            navigate(from,{replace:true});
           })
           .catch((error) => {
             console.log('An error occurred during Google Sign-In:', error);

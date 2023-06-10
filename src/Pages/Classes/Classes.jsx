@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 
 const Classes = () => {
     const [classData, setClassData] = useState([]);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [hasShownLoginMessage, setHasShownLoginMessage] = useState(false);
+    
+
 
     useEffect(()=>{
         fetch('http://localhost:5000/Class')
@@ -11,8 +15,23 @@ const Classes = () => {
           .then(data=>setClassData(data));
     },[])
 
+    const handleSelectClass = () => {
+      if (!isLoggedIn) {
+        if (!hasShownLoginMessage) {
+          alert('Please log in before selecting a course.');
+          setHasShownLoginMessage(true);
+        }
+        return;
+      };
+      // Perform the necessary actions when the class is selected
+      // ...
+  
+      // Reset the login message state
+      setHasShownLoginMessage(false);
     
-
+  };
+    
+      
 
     return (
         <div>
@@ -32,12 +51,15 @@ const Classes = () => {
           <p className="text-gray-500">Instructor: {classItem.instructor}</p>
           <p className="text-gray-500">Available Seats: {classItem.availableSeats}</p>
           <p className="text-gray-500">Price: ${classItem.price}</p>
-         
-          <button className='btn btn-neutral'>Select</button>
-         
-         
-         
+         {/* <Link to="/Classes">
+         <button className='btn btn-neutral'>Select</button>
+         </Link> */}
+        <button className='btn btn-neutral' onClick={handleSelectClass}>
+            Select
+          </button>
         </div>
+         
+        
       ))}
         </div>
     );

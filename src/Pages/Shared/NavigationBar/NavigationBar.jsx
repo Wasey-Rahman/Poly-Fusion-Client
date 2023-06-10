@@ -51,7 +51,7 @@ const NavigationBar = () => {
               src={user.photoURL}
               alt="Profile"
             />
-            <Link to="/dashboard" className='text-white px-3'>
+            <Link to="/dashboard/MySelectedClasses" className='text-white px-3'>
               Dashboard
             </Link>
             <button onClick={logOut} className="btn">Logout</button>

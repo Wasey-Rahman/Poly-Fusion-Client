@@ -20,6 +20,7 @@ const topClasses = sortedClasses.slice(0, 6);
             <img src={classItem.imageUrl} alt={classItem.className}className="w-full h-auto" />
             <h3 className='font-bold text-gray-600'>{classItem.className}</h3>
             <p>Students: {classItem.studentCount}</p>
+            
           </div>
         ))}
       </div>
