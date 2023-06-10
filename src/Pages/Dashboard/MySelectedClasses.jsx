@@ -1,17 +1,44 @@
 import React from 'react';
 import UseData from '../../UseData/UseData';
 import { RiDeleteBinLine } from 'react-icons/ri';
+import Swal from 'sweetalert2';
 
 const MySelectedClasses = () => {
-    const [record]=UseData();
+    const [record,refetch]=UseData();
     console.log(record);
 
-    const handleDelete = (id) => {
-        // Logic to delete the corresponding record with the given id
-      };
+    const handleDelete = row => {
+       Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+             fetch(`http://localhost:5000/Data/${row._id}`,{
+                method:'DELETE'
+             })
+             .then(res=>res.json())
+             .then(data=>{
+                if(data.deletedCount>0){
+                    refetch();
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                      )
+                }
+             })
+            }
+            })
+        }
+    
     return (
         <div>
-            <div>
+            <div className='w-full'>
                 < h2 className="text-center font-bold text-4xl  mb-10 text-blue-700">Booked Class</h2>
             </div>
             <div className="overflow-x-auto">
@@ -47,7 +74,7 @@ const MySelectedClasses = () => {
         <td>${row.price}</td>
 
         <td>
-        <button className="btn btn-ghost bg-red-600 btn-xs" onClick={() => handleDelete(row._id)}>
+        <button className="btn btn-ghost bg-red-600 btn-xs" onClick={() => handleDelete(row)}>
                     <RiDeleteBinLine />
                   </button>
         </td>
@@ -57,21 +84,10 @@ const MySelectedClasses = () => {
       </tr>
         
         ))}
-      
-      
-   
-      
-      
-     
-    
-      
     </tbody>
-    
-    
-    
-  </table>
+</table>
 </div>
-        </div>
+</div>
     );
 };
 
