@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 
 const Instructors = () => {
     const [instructors, setInstructors] = useState([]);
@@ -10,6 +11,9 @@ useEffect(()=>{
 },[])
     return (
         <div>
+          <Helmet>
+                <title>Poly-Fusion|Instructors</title>
+            </Helmet>
             <h1 className="text-center font-bold text-4xl mt-10 mb-10 text-blue-700">Instructors</h1>
       {instructors.map((instructor, index) => (
         <div key={index} className="flex flex-col items-center mb-8">

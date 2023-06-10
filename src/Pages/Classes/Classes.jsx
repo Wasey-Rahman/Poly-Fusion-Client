@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
 
 const Classes = () => {
     const [classData, setClassData] = useState([]);
@@ -14,6 +16,9 @@ const Classes = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Poly-Fusion|Classes</title>
+            </Helmet>
             <h1 className="text-center font-bold text-4xl mt-10 mb-10 text-blue-700">Approved Classes</h1>
       {classData.map((classItem, index) => (
         <div
@@ -27,7 +32,10 @@ const Classes = () => {
           <p className="text-gray-500">Instructor: {classItem.instructor}</p>
           <p className="text-gray-500">Available Seats: {classItem.availableSeats}</p>
           <p className="text-gray-500">Price: ${classItem.price}</p>
+         
           <button className='btn btn-neutral'>Select</button>
+         
+         
          
         </div>
       ))}
