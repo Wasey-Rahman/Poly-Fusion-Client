@@ -10,8 +10,10 @@ import Register from "../Pages/Register/Register";
 import Instructors from "../Pages/Instrutors/Instructors";
 import Classes from "../Pages/Classes/Classes";
 import Dashboard from "../Layout/Dashboard";
-import MySelectedClasses from "../Pages/Dashboard/MySelectedClasses";
+import MySelectedClasses from "../Pages/Dashboard/StudentDashboard/MySelectedClasses";
 import PrivateRoute from "./PrivateRoute";
+import Payment from "../Pages/Dashboard/StudentDashboard/Payment/Payment";
+
 
   export const router = createBrowserRouter([
     {
@@ -48,10 +50,15 @@ import PrivateRoute from "./PrivateRoute";
         {
           path:'MySelectedClasses',
           element:<PrivateRoute><MySelectedClasses></MySelectedClasses></PrivateRoute>
-        }
-      ]
-    },
-    
+        },
+            {
+              path:"Payment",
+              element:<PrivateRoute><Payment></Payment></PrivateRoute>
+            }
+          ]
+        },
+        
+      
     {
         path:'*',
         element:<NotFound></NotFound>

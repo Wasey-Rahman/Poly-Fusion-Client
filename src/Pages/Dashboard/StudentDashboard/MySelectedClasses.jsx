@@ -1,7 +1,8 @@
 import React from 'react';
-import UseData from '../../UseData/UseData';
+import UseData from '../../../Hooks/UseData';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 const MySelectedClasses = () => {
     const [record,refetch]=UseData();
@@ -79,7 +80,8 @@ const MySelectedClasses = () => {
                   </button>
         </td>
         <td>
-          <button className="btn btn-outline btn-xs">Pay</button>
+            <Link to="/dashboard/Payment"><button className="btn btn-outline btn-xs">Pay</button></Link>
+          
         </td>
       </tr>
         

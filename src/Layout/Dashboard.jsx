@@ -29,7 +29,7 @@ const Dashboard = () => {
       {/* Sidebar content here */}
       <li><Link to="MySelectedClasses"><FontAwesomeIcon icon={faCheck} />My Selected Classes</Link></li>
       <li><Link><FontAwesomeIcon icon={faCheckCircle} />My Enrolled Classes</Link></li>
-      <li><Link><FontAwesomeIcon icon={faCreditCard} />Payment</Link></li>
+      <li><Link><FontAwesomeIcon icon={faCreditCard} />Payment History</Link></li>
     </ul>
   
   </div>
