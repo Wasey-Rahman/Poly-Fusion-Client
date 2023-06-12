@@ -7,8 +7,15 @@ import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
 import NavigationBar from '../Pages/Shared/NavigationBar/NavigationBar';
 import Footer from '../Pages/Shared/Footer/Footer';
 import { Helmet } from 'react-helmet';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { faUsersCog } from '@fortawesome/free-solid-svg-icons';
+import { faChalkboardTeacher } from '@fortawesome/free-solid-svg-icons';
+
 
 const Dashboard = () => {
+const isAdmin=true;
+
+
     return (
         <div>
             <Helmet>
@@ -26,11 +33,28 @@ const Dashboard = () => {
   <div className="drawer-side">
     <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
     <ul className="menu p-4 w-80 h-full bg-slate-500 text-base-content">
-      {/* Sidebar content here */}
-      <li><Link to="MySelectedClasses"><FontAwesomeIcon icon={faCheck} />My Selected Classes</Link></li>
+
+{
+  isAdmin?<>
+  <li><Link to="/dashboard/AdminHome"> <FontAwesomeIcon icon={faHome} /> Admin Home</Link></li>
+      <li><Link to="/dashboard/Manage Classes"> <FontAwesomeIcon icon={faChalkboardTeacher} /> Manage Classes</Link></li>
+      <li><Link to="/dashboard/Manage Users"><FontAwesomeIcon icon={faUsersCog} />Manage Users</Link></li>
+  </> :<>
+
+{/* Sidebar content here */}
+<li><Link to="MySelectedClasses"><FontAwesomeIcon icon={faCheck} />My Selected Classes</Link></li>
       <li><Link><FontAwesomeIcon icon={faCheckCircle} />My Enrolled Classes</Link></li>
       <li><Link><FontAwesomeIcon icon={faCreditCard} />Payment History</Link></li>
-    </ul>
+    
+
+</>
+}
+</ul>
+
+
+
+
+      
   
   </div>
 </div>

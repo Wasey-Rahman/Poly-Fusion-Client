@@ -4,7 +4,7 @@ const PopularClasses = () => {
     const [classes, setClasses] = useState([]);
 
 useEffect(()=>{
-    fetch('http://localhost:5000/PopularClasses')
+    fetch('  https://poly-fusion-server.vercel.app/PopularClasses')
       .then(res=>res.json())
       .then(data=>setClasses(data));
 },[])

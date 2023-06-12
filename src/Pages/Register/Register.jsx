@@ -1,14 +1,49 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { useContext } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 const Register = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const { createUser } = useContext(AuthContext);
+  const {googleSignIn} =useContext(AuthContext);
+ const  Navigate=useNavigate();
+ const location=useLocation();
+
+ const from=location.state?.from?.pathname || "/";
+
+   const handleGoogleSignIn=()=>{
+    googleSignIn()
+    .then(result=>{
+      const loggedUser=result.user;
+      console.log(loggedUser);
+      
+      
+            
+        fetch(' http://localhost:5000/user',{
+          method:'POST',
+          headers:{
+            'content-type':'application/json'
+          },
+          body:JSON.stringify({
+           
+          email: loggedUser.email
+          })
+        })
+        .then(res=>res.json())
+        .then(()=>{
+          
+            Navigate(from,{replace:true});
+          
+        }
+          )
+      })
+    
+    }
+   
 
   const onSubmit = data => {
     console.log(data);
@@ -23,7 +58,28 @@ const Register = () => {
             displayName: data.name,
             photoURL: data.photo_url,
           })
-            .then(() => {
+
+          .then(()=>{
+            
+            fetch(' http://localhost:5000/user',{
+              method:'POST',
+              headers:{
+                'content-type':'application/json'
+              },
+              body:JSON.stringify({
+                name: data.name,
+                email: data.email
+              })
+            })
+            .then(res=>res.json())
+            .then(data=>{
+              if (data.insertedId){
+                Navigate('/');
+              }
+            }
+              )
+          })
+          .then(() => {
               console.log('Profile updated!');
               // ... Perform additional actions after updating the profile
             })
@@ -37,7 +93,7 @@ const Register = () => {
         console.log('An error occurred while creating the user:', error);
         // ... Handle the error
       });
-  };
+    }
 
   return (
     <>
@@ -90,7 +146,10 @@ const Register = () => {
               </div>
             
               <div className="form-control mt-6">
-                <input className="btn btn-outline" type="submit" value="Register" />
+                <input className="btn btn-outline mb-5" type="submit" value="Register" />
+                <button className="btn btn-neutral" onClick={handleGoogleSignIn} >
+                Google Sign-up
+              </button>
                 <p><small>Already have an account? <Link to="/LogIn" className='text-primary'>LogIn</Link></small></p>
               </div>
             </form>

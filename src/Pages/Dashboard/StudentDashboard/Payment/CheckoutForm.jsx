@@ -11,6 +11,7 @@ const CheckoutForm = ({ price }) => {
 
   useEffect(() => {
     if (price <= 0) {
+      console.log(price)
       // Handle the invalid price case (e.g., show an error message)
       return;
     }

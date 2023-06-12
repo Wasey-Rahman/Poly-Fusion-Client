@@ -12,7 +12,7 @@ const Classes = () => {
     const location=useLocation();
     
   useEffect(()=>{
-        fetch('http://localhost:5000/Class')
+        fetch('  https://poly-fusion-server.vercel.app/Class')
           .then(res=>res.json())
           .then(data=>setClassData(data));
     },[])
@@ -23,7 +23,7 @@ const handleAdd=(classItem)=>{
 
   if (user && user.email){
     const classItemData={...classItem, email: user.email}
-    fetch('http://localhost:5000/Data',{
+    fetch('  https://poly-fusion-server.vercel.app/Data',{
       method:'POST',
       headers:{
         'content-type':'application/json'

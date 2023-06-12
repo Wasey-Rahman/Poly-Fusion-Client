@@ -5,7 +5,7 @@ const Instructors = () => {
     const [instructors, setInstructors] = useState([]);
 
 useEffect(()=>{
-    fetch('http://localhost:5000/Instructor')
+    fetch('  https://poly-fusion-server.vercel.app/Instructor')
       .then(res=>res.json())
       .then(data=>setInstructors(data));
 },[])

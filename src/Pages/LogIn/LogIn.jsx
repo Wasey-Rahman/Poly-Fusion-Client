@@ -52,7 +52,7 @@ const LogIn = () => {
             setUserPhotoURL(user.photoURL || '');
             navigate(from,{replace:true});
           })
-          .catch((error) => {
+           .catch((error) => {
             console.log('An error occurred during Google Sign-In:', error);
             // Handle the error
           });

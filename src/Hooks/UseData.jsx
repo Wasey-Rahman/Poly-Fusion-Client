@@ -8,7 +8,7 @@ const UseData = () => {
     const {refetch,data: record=[]}=useQuery({
         queryKey:['Data',user?.email],
         queryFn:async()=>{
-            const res=await fetch(`http://localhost:5000/Data?email=${user?.email}`)
+            const res=await fetch(`  https://poly-fusion-server.vercel.app/Data?email=${user?.email}`)
             return res.json();
         }
     })

@@ -39,6 +39,11 @@ const NavigationBar = () => {
           <li><Link to="/">Home</Link></li>
           <li><Link to="/Instructors">Instructors</Link></li>
           <li><Link to="/Classes">Classes</Link></li>
+          {/* {
+            isAdmin ?<li><Link to="/dashboard/AdminHome">Dashboard</Link></li>:
+            <li><Link to="/dashboard/InstructorHome">Dashboard</Link></li>
+
+          } */}
         </ul>
       </div>
       <div className="navbar-end">
@@ -54,6 +59,7 @@ const NavigationBar = () => {
             <Link to="/dashboard/MySelectedClasses" className='text-white px-3'>
               Dashboard
             </Link>
+            
             <button onClick={logOut} className="btn">Logout</button>
           </>
         ) : (
