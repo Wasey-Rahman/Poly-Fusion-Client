@@ -16,6 +16,11 @@ import Payment from "../Pages/Dashboard/StudentDashboard/Payment/Payment";
 import InstructorHome from "../Pages/Dashboard/InstructorDashboard/InstructorHome";
 import AdminHome from "../Pages/Dashboard/AdminDashboard/AdminHome";
 import ManageUsers from "../Pages/Dashboard/AdminDashboard/ManageUsers/ManageUsers";
+import Add_A_Class from "../Pages/Dashboard/InstructorDashboard/Add_A_Class";
+import MyClass from "../Pages/Dashboard/InstructorDashboard/MyClass";
+import ManageClasses from "../Pages/Dashboard/AdminDashboard/ManageClasses";
+
+
 
 
   export const router = createBrowserRouter([
@@ -66,12 +71,26 @@ import ManageUsers from "../Pages/Dashboard/AdminDashboard/ManageUsers/ManageUse
               path:'AdminHome',
               element:<PrivateRoute><AdminHome></AdminHome></PrivateRoute>
             },
+            
             {
               path:'Manage Users',
               element:<ManageUsers></ManageUsers>
-            }
+            },
+            {
+              path:'Add_A_Class',
+              element:<Add_A_Class></Add_A_Class>
+            },
+            {
+              path:'MyClass',
+              element:<MyClass></MyClass>
+            },
+            {
+              path:'ManageClasses',
+              element:<ManageClasses></ManageClasses>
+            },
           ]
         },
+       
         
       
     {

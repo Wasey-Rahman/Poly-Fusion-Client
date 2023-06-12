@@ -32,7 +32,7 @@ useEffect(()=>{
         }
       )
     },[logOut,navigate,axiosSecure]);
-    return axiosSecure;
+    return [axiosSecure];
     
 
 };

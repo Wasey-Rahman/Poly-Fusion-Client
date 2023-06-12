@@ -2,11 +2,15 @@ import React, { useContext, useState }  from 'react';
 import { Link } from 'react-router-dom';
 import logo from './Poly-Fusion.png';
 import { AuthContext } from '../../../Providers/AuthProvider';
+import useAdmin from '../../../Hooks/useadmin';
+
 
 
 const NavigationBar = () => {
   const { user,logOut } = useContext(AuthContext);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [isAdmin, isAdminLoading] = useAdmin(); 
+  
 
   const toggleDropdown = () => {
     setDropdownOpen(!isDropdownOpen);
@@ -56,9 +60,20 @@ const NavigationBar = () => {
               src={user.photoURL}
               alt="Profile"
             />
-            <Link to="/dashboard/MySelectedClasses" className='text-white px-3'>
-              Dashboard
-            </Link>
+            {/* {
+              isAdmin ? <Link to="/dashboard/AdminHome" className='text-white px-3'>Dashboard</Link>:
+              <Link to="/dashboard/MySelectedClasses"className='text-white px-3'>Dashboard</Link>
+            } */}
+            {isAdmin ? (
+              <Link to="/dashboard/AdminHome" className="text-white px-3">
+                Dashboard
+              </Link>
+            ) : (
+              <Link to="/dashboard/MySelectedClasses" className="text-white px-3">
+                Dashboard
+              </Link>
+            )}
+           
             
             <button onClick={logOut} className="btn">Logout</button>
           </>

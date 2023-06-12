@@ -3,14 +3,17 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import Swal from 'sweetalert2';
 
+
 const ManageUsers = () => {
-    const {data:user=[],refetch}=useQuery(['user'],async()=>{
-        const res=await fetch('http://localhost:5000/user')
-        return res.json();
-    })
+    
+    const { data: user = [], refetch } = useQuery(['user'], async () => {
+        const res = await fetch(' https://poly-fusion-server.vercel.app/user'); // Adjust the URL to your API endpoint
+        const data = await res.json();
+        return data;
+    });
 
    const handleMakeAdmin=user=>{
-       fetch(`http://localhost:5000/user/admin/${user._id}`,{
+       fetch(` https://poly-fusion-server.vercel.app/user/admin/${user._id}`,{
         method:'PATCH'
        })
        .then(res=>res.json())
@@ -29,7 +32,7 @@ const ManageUsers = () => {
 
    }
   const handleMakeInstructor=user=>{
-    fetch(`http://localhost:5000/user/instructor/${user._id}`,{
+    fetch(` https://poly-fusion-server.vercel.app/user/instructor/${user._id}`,{
         method:'PATCH'
        })
        .then(res=>res.json())
@@ -46,7 +49,6 @@ const ManageUsers = () => {
         }
        })
   }
-
 
 
 
@@ -90,3 +92,4 @@ const ManageUsers = () => {
 };
 
 export default ManageUsers;
+
